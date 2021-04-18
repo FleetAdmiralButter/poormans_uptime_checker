@@ -1,0 +1,6 @@
+name: Poor Man's Uptime Checker
+description: Check the uptime of external service or sites using Drupal
+package: Custom
+type: module
+version: 1.0
+core: 8.x

@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function poormans_uptime_checker_theme($existing, $type, $theme, $path) {
+  return [
+    'uptime-status' => [
+      'variables' => ['items' => []],
+    ],
+  ];
+}

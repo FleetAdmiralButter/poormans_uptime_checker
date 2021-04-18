@@ -1,0 +1,6 @@
+poormans_uptime_checker.config:
+  title: 'PMUC settings'
+  description: 'Configure Poor Mans Uptime Checker'
+  parent: system.admin_config_system
+  route_name: poormans_uptime_checker.config
+  weight: 10

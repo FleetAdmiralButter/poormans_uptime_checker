@@ -1,0 +1,63 @@
+<?php
+
+use Drupal\Core\Database\Database;
+/**
+ * @file
+ * Install and update functions for drupal_fence module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function poormans_uptime_checker_install() {
+
+}
+
+/**
+ * Implements hook_schema().
+ */
+function poormans_uptime_checker_schema() {
+    $schema['pmuc_hosts'] = [
+        'description' => 'A list of hosts to run uptime checks against.',
+        'fields' => [
+            'hostname' => [
+                'type' => 'varchar',
+                'length' => '255',
+                'not null' => TRUE,
+                'default' => '',
+                'description' => 'Hostname'
+            ],
+            'check_type' => [
+                 'type' => 'varchar',
+                 'length' => '255',
+                 'not null' => TRUE,
+                 'default' => '',
+                 'description' => 'Check type'
+             ],
+           'status' => [
+                'type' => 'int',
+                'description' => 'Last known status of the host.'
+            ],
+           'last_error' => [
+                'type' => 'varchar',
+                'length' => '255',
+                'not null' => TRUE,
+                'default' => '',
+                'description' => 'Last error the check failed with.'
+            ],
+        ],
+    ];
+    return $schema;
+}
+
+function poormans_uptime_checker_requirements($phase) {
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function poormans_uptime_checker_uninstall() {
+    $schema = Database::getConnection()->schema();
+    $schema->dropTable('pmuc_hosts');
+}

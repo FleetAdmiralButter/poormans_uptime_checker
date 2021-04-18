@@ -1,0 +1,14 @@
+poormans_uptime_checker.config:
+  path: /admin/config/development/pmuc
+  defaults:
+    _title: 'Poormans Uptime Checker Settings'
+    _form: 'Drupal\poormans_uptime_checker\Form\PMUCConfigForm'
+  requirements:
+    _permission: 'administer site configuration'
+poormans_uptime_checker.status:
+  path: '/admin/config/pmuc/status'
+  defaults:
+    _controller: 'Drupal\poormans_uptime_checker\Controller\PMUCController::status'
+    _title: 'Uptime Status'
+  requirements:
+    _permission: 'administer site configuration'
