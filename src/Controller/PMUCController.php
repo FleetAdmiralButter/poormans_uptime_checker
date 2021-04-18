@@ -22,12 +22,12 @@ class PMUCController extends ControllerBase{
   public function status() {
     $data = [];
     $render_array = [];
-    $hosts = $this->database->query("SELECT * FROM {pmuc_hosts}")->fetchAll(\PDO::FETCH_OBJ);
+    $hosts = $this->database->query("SELECT * FROM {pmuc_hosts}")->fetchAll();
     foreach ($hosts as $host) {
       $data[] = [
         'hostname' => $host->hostname,
         'check_type' => $host->check_type,
-        'status' => $host->status,
+        'status' => $host->status ? 'Up' : 'Down',
         'last_error' => $host->last_error,
       ];
     }

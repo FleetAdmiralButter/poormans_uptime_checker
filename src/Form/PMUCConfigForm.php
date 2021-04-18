@@ -77,8 +77,10 @@ class PMUCConfigForm extends ConfigFormBase {
       foreach ($host_list as $host) {
         $database->insert('pmuc_hosts')
           ->fields([
-            'hostname' => $host,
+            'hostname' => str_replace(array("\n", "\t", "\r"), '', $host),
             'check_type' => 'http',
+            'last_error' => 'No known outages.',
+            'status' => null,
           ])
           ->execute();
       }

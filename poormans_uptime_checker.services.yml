@@ -1,1 +1,3 @@
 services:
+  poormans_uptime_checker.checker:
+    class: Drupal\poormans_uptime_checker\PMUCChecker
