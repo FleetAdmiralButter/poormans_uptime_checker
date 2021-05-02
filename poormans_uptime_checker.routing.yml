@@ -5,42 +5,35 @@ poormans_uptime_checker.config:
     _form: 'Drupal\poormans_uptime_checker\Form\PMUCConfigForm'
   requirements:
     _permission: 'administer site configuration'
-poormans_uptime_checker.status:
-  path: '/admin/config/pmuc/status'
-  defaults:
-    _controller: 'Drupal\poormans_uptime_checker\Controller\PMUCController::status'
-    _title: 'Uptime Status'
-  requirements:
-    _permission: 'administer site configuration'
 
 entity.poormans_uptime_checker_pmuc.collection:
   path: '/admin/config/pmuc/status'
   defaults:
-    _entity_list: 'example'
+    _entity_list: 'PMUCHost'
     _title: 'Uptime Status'
   requirements:
     _permission: 'administer site configuration'
 
 entity.poormans_uptime_checker_pmuc.add_form:
-  path: '/admin/config/system/example/add'
+  path: '/admin/config/pmuc/pmuchost/add'
   defaults:
-    _entity_form: 'example.add'
+    _entity_form: 'PMUCHost.add'
     _title: 'Add new host'
   requirements:
     _permission: 'administer site configuration'
 
-entity.poormans_uptime_checker_pmuc.edit_form:
-  path: '/admin/config/system/example/{example}'
+entity.PMUCHost.edit_form:
+  path: '/admin/config/pmuc/pmuchost/{PMUCHost}'
   defaults:
-    _entity_form: 'example.edit'
+    _entity_form: 'PMUCHost.edit'
     _title: 'Edit host'
   requirements:
     _permission: 'administer site configuration'
 
-entity.poormans_uptime_checker_pmuc.delete_form:
-  path: '/admin/config/system/example/{example}/delete'
+entity.PMUCHost.delete_form:
+  path: '/admin/config/pmuc/pmuchost/{PMUCHost}/delete'
   defaults:
-    _entity_form: 'example.delete'
+    _entity_form: 'PMUCHost.delete'
     _title: 'Delete host'
   requirements:
     _permission: 'administer site configuration'

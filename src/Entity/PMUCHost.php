@@ -6,17 +6,17 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\poormans_uptime_checker\PMUCHostInterface;
 
 /**
- * Defines the Example entity.
+ * Defines the PMUChost entity.
  *
  * @ConfigEntityType(
- *   id = "PMUChost",
+ *   id = "PMUCHost",
  *   label = @Translation("Poor Mans Uptime Checker Host Configuration Entity"),
  *   handlers = {
- *     "list_builder" = "Drupal\example\Controller\ExampleListBuilder",
+ *     "list_builder" = "Drupal\poormans_uptime_checker\Controller\PMUCHostListBuilder",
  *     "form" = {
- *       "add" = "Drupal\example\Form\ExampleForm",
- *       "edit" = "Drupal\example\Form\ExampleForm",
- *       "delete" = "Drupal\example\Form\ExampleDeleteForm",
+ *       "add" = "Drupal\poormans_uptime_checker\Form\PMUCHostForm",
+ *       "edit" = "Drupal\poormans_uptime_checker\Form\PMUCHostForm",
+ *       "delete" = "Drupal\poormans_uptime_checker\Form\PMUCHostDeleteForm",
  *     }
  *   },
  *   config_prefix = "pmuc",
@@ -29,12 +29,10 @@ use Drupal\poormans_uptime_checker\PMUCHostInterface;
  *     "id",
  *     "label",
  *     "hostname",
- *     "status",
- *     "last_error"
  *   },
  *   links = {
- *     "edit-form" = "/admin/config/system/example/{example}",
- *     "delete-form" = "/admin/config/system/example/{example}/delete",
+ *     "edit-form" = "/admin/config/pmuc/pmuchost/{PMUCHost}",
+ *     "delete-form" = "/admin/config/pmuc/pmuchost/{PMUCHost}/delete",
  *   }
  * )
  */
