@@ -40,14 +40,6 @@ class PMUCHostForm extends EntityForm {
 
         $pmuchost = $this->entity;
 
-        $form['label'] = [
-            '#type' => 'textfield',
-            '#title' => $this->t('Label'),
-            '#maxlength' => 255,
-            '#default_value' => $pmuchost->label(),
-            '#description' => $this->t("Label for the PMUCHost."),
-            '#required' => TRUE,
-        ];
         $form['id'] = [
             '#type' => 'machine_name',
             '#default_value' => $pmuchost->id(),
@@ -61,7 +53,7 @@ class PMUCHostForm extends EntityForm {
             '#title' => 'Hostname',
             '#maxlength' => 255,
             '#default_value' => $pmuchost->getHostname(),
-            '#description' => $this->t("Label for the PMUCHost."),
+            '#description' => $this->t("URL of the host to check."),
             '#required' => TRUE,
         ];
 
@@ -73,15 +65,16 @@ class PMUCHostForm extends EntityForm {
      */
     public function save(array $form, FormStateInterface $form_state) {
         $pmuchost = $this->entity;
+        $pmuchost->setLastError('No error');
         $status = $pmuchost->save();
 
         if ($status === SAVED_NEW) {
-            $this->messenger()->addMessage($this->t('The %label created.', [
+            $this->messenger()->addMessage($this->t('Created.', [
                 '%label' => $pmuchost->label(),
             ]));
         }
         else {
-            $this->messenger()->addMessage($this->t('The %label updated.', [
+            $this->messenger()->addMessage($this->t('Updated.', [
                 '%label' => $pmuchost->label(),
             ]));
         }

@@ -1,0 +1,5 @@
+entity.poormans_uptime_checker_pmuc.add_form:
+  route_name: 'entity.poormans_uptime_checker_pmuc.add_form'
+  title: 'Add host'
+  appears_on:
+    - entity.poormans_uptime_checker_pmuc.collection

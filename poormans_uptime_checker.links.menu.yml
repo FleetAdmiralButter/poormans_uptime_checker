@@ -4,3 +4,8 @@ poormans_uptime_checker.config:
   parent: system.admin_config_system
   route_name: poormans_uptime_checker.config
   weight: 10
+entity.poormans_uptime_checker_pmuc.collection:
+  title: 'PMUC Hosts'
+  parent: system.admin_config_system
+  description: 'Configure hosts for PMUC'
+  route_name: entity.poormans_uptime_checker_pmuc.collection

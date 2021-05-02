@@ -7,41 +7,41 @@ class PMUCChecker {
   private $database;
   private $config;
   private $http_client;
+  private $entity_manager;
 
   public function __construct() {
     $this->database = \Drupal::service('database');
     $this->config = \Drupal::config('poormans_uptime_checker.settings');
     $this->http_client = \Drupal::service('http_client');
+    $this->entity_manager = \Drupal::entityManager();
   }
 
-  // Quick and dirty to get this running.
-  // Database queries and updates need to be rebuilt to be less dumb.
-  public function check_all(){
-    $fail_reason = '';
-    $hosts = $this->database->query("SELECT * FROM {pmuc_hosts}")->fetchAll();
-    foreach($hosts as $host) {
-      try {
-        $request = $this->http_client->request('GET', $host->hostname);
-        if ($request->getStatusCode() >= 200 && $request->getStatusCode() <300) {
-          // This query is garbage.
-          $this->database->query("UPDATE {pmuc_hosts} SET status = 1  WHERE hostname = :hostname", [
-            ':hostname' => $host->hostname
-          ]);
-        } else {
-          $fail_reason = 'Request failed with status code ' . $request->getStatusCode();
-          // This query is garbage.
-          $this->database->query("UPDATE {pmuc_hosts} SET status = 0, last_error = :error WHERE hostname = :hostname", [
-            ':error' => $fail_reason,
-            ':hostname' => $host->hostname
-          ]);
-        }
-      } catch (RequestException $e) {
-        // This query is garbage.
-        $this->database->query("UPDATE {pmuc_hosts} SET status = 0, last_error = :error WHERE hostname = :hostname", [
-          ':error' => $e->getMessage(),
-          ':hostname' => $host->hostname
-        ]);
-      }
-    }
+  public function check_all() {
+    // Load all config entities
+     $hosts = $this->entity_manager->getStorage('PMUCHost')->loadMultiple();
+
+     foreach($hosts as $host) {
+         // Checking logic here
+         $url = $host->getHostname();
+         try {
+             $request = $this->http_client->request('GET', $url);
+             if ($request->getStatusCode() >= 200 && $request->getStatusCode() <300) {
+                 // Success 200 response
+                 $host->setStatus('Up');
+                 $host->save();
+             } else {
+                 // Fail, set errors
+                 $fail_reason = 'Request failed with status code ' . $request->getStatusCode();
+                 $host->setStatus('Down');
+                 $host->setLastError($fail_reason);
+                 $host->save();
+             }
+         } catch (RequestException $e) {
+              // Connection error
+             $host->setStatus('Down');
+             $host->setLastError($e->getMessage());
+             $host->save();
+         }
+     }
   }
 }

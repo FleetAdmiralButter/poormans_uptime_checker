@@ -5,15 +5,12 @@ poormans_uptime_checker.pmuc.*:
     id:
       type: string
       label: 'ID'
-    label:
-      type: label
-      label: 'Label'
     hostname:
       type: string
       label: 'Hostname'
+    last_message:
+      type: string
+      label: 'Last Error'
     status:
       type: string
       label: 'Last Known Status'
-    last_error:
-      type: String
-      label: 'Last Error'

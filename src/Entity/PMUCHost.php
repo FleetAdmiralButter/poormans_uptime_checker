@@ -6,7 +6,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\poormans_uptime_checker\PMUCHostInterface;
 
 /**
- * Defines the PMUChost entity.
+ * Defines the PMUCHost entity.
  *
  * @ConfigEntityType(
  *   id = "PMUCHost",
@@ -38,19 +38,10 @@ use Drupal\poormans_uptime_checker\PMUCHostInterface;
  */
 class PMUCHost extends ConfigEntityBase implements PMUCHostInterface {
 
-    /**
-     * @var string
-     */
     protected $id;
-
-    /**
-     * @var string
-     */
-    protected $label;
-
     protected $hostname;
     protected $status;
-    protected $last_error;
+    protected $last_message;
 
     public function getHostname() {
         return $this->hostname;
@@ -69,10 +60,11 @@ class PMUCHost extends ConfigEntityBase implements PMUCHostInterface {
     }
 
     public function getLastError() {
-        return $this->last_error;
+        return $this->last_message;
     }
 
     public function setLastError($error) {
-        $this->last_error = $error;
+        //drush_print('Hello '. $error);
+        $this->last_message = $error;
     }
 }
