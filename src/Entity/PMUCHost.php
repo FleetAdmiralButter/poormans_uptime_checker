@@ -38,7 +38,7 @@ use Drupal\poormans_uptime_checker\PMUCHostInterface;
  *   }
  * )
  */
-class Example extends ConfigEntityBase implements PMUCHostInterface {
+class PMUCHost extends ConfigEntityBase implements PMUCHostInterface {
 
     /**
      * @var string
