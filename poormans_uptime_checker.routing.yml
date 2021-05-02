@@ -12,3 +12,35 @@ poormans_uptime_checker.status:
     _title: 'Uptime Status'
   requirements:
     _permission: 'administer site configuration'
+
+entity.poormans_uptime_checker_pmuc.collection:
+  path: '/admin/config/pmuc/status'
+  defaults:
+    _entity_list: 'example'
+    _title: 'Uptime Status'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.poormans_uptime_checker_pmuc.add_form:
+  path: '/admin/config/system/example/add'
+  defaults:
+    _entity_form: 'example.add'
+    _title: 'Add new host'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.poormans_uptime_checker_pmuc.edit_form:
+  path: '/admin/config/system/example/{example}'
+  defaults:
+    _entity_form: 'example.edit'
+    _title: 'Edit host'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.poormans_uptime_checker_pmuc.delete_form:
+  path: '/admin/config/system/example/{example}/delete'
+  defaults:
+    _entity_form: 'example.delete'
+    _title: 'Delete host'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,19 @@
+poormans_uptime_checker.pmuc.*:
+  type: config_entity
+  label: 'Poor Mans Uptime Checker Host Configuration Entity'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    hostname:
+      type: string
+      label: 'Hostname'
+    status:
+      type: string
+      label: 'Last Known Status'
+    last_error:
+      type: String
+      label: 'Last Error'
