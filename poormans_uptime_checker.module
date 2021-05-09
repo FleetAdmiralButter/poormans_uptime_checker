@@ -7,3 +7,12 @@ function poormans_uptime_checker_cron() {
   \Drupal::logger('poormans_uptime_checker')->warning('Poormans Uptime Checker is running with Drupal cron. This is not recommended. Use drush pmuc-check-all instead.');
   \Drupal::service('poormans_uptime_checker.checker')->check_all();
 }
+
+function poormans_uptime_checker_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'notification':
+      $message['subject'] = $params['context']['subject'];
+      $message['body'][] = $params['context']['message'];
+      break;
+  }
+}

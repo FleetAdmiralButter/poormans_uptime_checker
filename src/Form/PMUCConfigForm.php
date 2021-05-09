@@ -21,6 +21,13 @@ class PMUCConfigForm extends ConfigFormBase {
       $form = parent::buildForm($form, $form_state);
       $config = $this->config('poormans_uptime_checker.settings');
 
+      $form['email'] = [
+        '#type' => 'email',
+        '#title' => $this->t('Status change email recipient'),
+        '#default_value' => $config->get('email'),
+        '#description' => $this->t('Email address of the person to receive up/down notifications.'),
+      ];
+
       $form['cron'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Run with cron'),
@@ -52,6 +59,7 @@ class PMUCConfigForm extends ConfigFormBase {
      */
     public function submitForm(array &$form, FormStateInterface $form_state) {
       $config = $this->config('poormans_uptime_checker.settings');
+      $config->set('email', $form_state->getValue('email'));
       $config->set('cron', $form_state->getValue('cron'));
       $config->save();
 
