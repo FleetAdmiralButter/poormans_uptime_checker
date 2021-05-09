@@ -22,6 +22,5 @@ PoorMans Uptime Checker obviously relies on your Drupal infrastructure to be fun
 PoorMans Uptime Checker is still in development and many features are missing, broken, or in need of rewriting. Please experiment at your own risk.
 
 # TODO
-1 - Refactor database code to follow Drupal best practices. It currently works but is very messy.
-2 - Set up hook_mail() for sending automatic alerts.
-3 - Integration with services such as Dead Man's Snitch to alert a user if PoorMans Uptime Checker stops working.
+1 - Integration with services such as Dead Man's Snitch to alert a user if PoorMans Uptime Checker stops working.
+2 - Collect more information about downtime, such as headers and start/stop times.
