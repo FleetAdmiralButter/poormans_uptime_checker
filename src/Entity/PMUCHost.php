@@ -24,11 +24,14 @@ use Drupal\poormans_uptime_checker\PMUCHostInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "label",
+ *     "hostname" = "hostname",
+ *     "fail_reason" = "fail_reason",
  *   },
  *   config_export = {
  *     "id",
  *     "label",
  *     "hostname",
+ *     "fail_reason",
  *   },
  *   links = {
  *     "edit-form" = "/admin/config/pmuc/pmuchost/{PMUCHost}",
@@ -41,7 +44,7 @@ class PMUCHost extends ConfigEntityBase implements PMUCHostInterface {
     protected $id;
     protected $hostname;
     protected $status;
-    protected $last_message;
+    protected $fail_reason;
 
     public function getHostname() {
         return $this->hostname;
@@ -59,12 +62,14 @@ class PMUCHost extends ConfigEntityBase implements PMUCHostInterface {
         $this->status = $status;
     }
 
-    public function getLastError() {
-        return $this->last_message;
+    public function getFailReason()
+    {
+      return $this->fail_reason;
     }
 
-    public function setLastError($error) {
-        //drush_print('Hello '. $error);
-        $this->last_message = $error;
+    public function setFailReason($reason) {
+      // Set the new value
+      $this->set('fail_reason', $reason);
+      return $this;
     }
 }

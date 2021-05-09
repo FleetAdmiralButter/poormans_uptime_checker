@@ -16,7 +16,7 @@ interface PMUCHostInterface extends ConfigEntityInterface {
 
     public function setStatus($status);
 
-    public function getLastError();
+    public function getFailReason();
 
-    public function setLastError($error);
+    public function setFailReason($reason);
 }

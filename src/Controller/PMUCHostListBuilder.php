@@ -16,7 +16,7 @@ class PMUCHostListBuilder extends ConfigEntityListBuilder {
     public function buildHeader() {
         $header['hostname'] = $this->t('Hostname');
         $header['status'] = $this->t('Last Known Status');
-        $header['last_error'] = $this->t('Last Known Error');
+        $header['fail_reason'] = $this->t('Last Error');
         return $header + parent::buildHeader();
     }
 
@@ -26,7 +26,7 @@ class PMUCHostListBuilder extends ConfigEntityListBuilder {
     public function buildRow(EntityInterface $entity) {
         $row['hostname'] = $entity->getHostname();
         $row['status'] = $entity->getStatus();
-        $row['last_error'] = $entity->getLastError();
+        $row['fail_reason'] = $entity->getFailReason();
         return $row + parent::buildRow($entity);
     }
 }

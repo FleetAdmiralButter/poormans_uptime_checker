@@ -42,6 +42,7 @@ class PMUCHostForm extends EntityForm {
 
         $form['id'] = [
             '#type' => 'machine_name',
+            '#title' => 'Machine Name',
             '#default_value' => $pmuchost->id(),
             '#machine_name' => [
                 'exists' => [$this, 'exist'],
@@ -65,7 +66,8 @@ class PMUCHostForm extends EntityForm {
      */
     public function save(array $form, FormStateInterface $form_state) {
         $pmuchost = $this->entity;
-        $pmuchost->setLastError('No error');
+        $pmuchost->setFailReason('No Error');
+        $pmuchost->setStatus('Never Checked');
         $status = $pmuchost->save();
 
         if ($status === SAVED_NEW) {

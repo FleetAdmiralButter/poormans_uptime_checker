@@ -1,12 +1,9 @@
 <?php
 
-/**
- * Implements hook_theme().
- */
-function poormans_uptime_checker_theme($existing, $type, $theme, $path) {
-  return [
-    'uptime-status' => [
-      'variables' => ['items' => []],
-    ],
-  ];
+function poormans_uptime_checker_cron() {
+  if (\Drupal::config('poormans_uptime_checker.settings')->get('cron') == 0) {
+    return;
+  }
+  \Drupal::logger('poormans_uptime_checker')->warning('Poormans Uptime Checker is running with Drupal cron. This is not recommended. Use drush pmuc-check-all instead.');
+  \Drupal::service('poormans_uptime_checker.checker')->check_all();
 }

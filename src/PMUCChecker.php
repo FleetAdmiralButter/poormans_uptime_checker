@@ -33,13 +33,13 @@ class PMUCChecker {
                  // Fail, set errors
                  $fail_reason = 'Request failed with status code ' . $request->getStatusCode();
                  $host->setStatus('Down');
-                 $host->setLastError($fail_reason);
+                 $host->setFailReason($fail_reason);
                  $host->save();
              }
          } catch (RequestException $e) {
               // Connection error
              $host->setStatus('Down');
-             $host->setLastError($e->getMessage());
+             $host->setFailReason($e->getMessage());
              $host->save();
          }
      }

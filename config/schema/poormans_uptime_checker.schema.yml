@@ -8,9 +8,9 @@ poormans_uptime_checker.pmuc.*:
     hostname:
       type: string
       label: 'Hostname'
-    last_message:
-      type: string
-      label: 'Last Error'
     status:
       type: string
       label: 'Last Known Status'
+    fail_reason:
+      type: string
+      label: 'Last Error'
