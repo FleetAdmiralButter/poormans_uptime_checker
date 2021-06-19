@@ -4,16 +4,14 @@ namespace Drupal\poormans_uptime_checker;
 
 use \GuzzleHttp\Exception\RequestException;
 class PMUCChecker {
-  private $database;
   private $config;
   private $http_client;
   private $entity_manager;
 
   public function __construct() {
-    $this->database = \Drupal::service('database');
     $this->config = \Drupal::config('poormans_uptime_checker.settings');
     $this->http_client = \Drupal::service('http_client');
-    $this->entity_manager = \Drupal::entityManager();
+    $this->entity_manager = \Drupal::EntityTypeManager();
   }
 
   private function isStatusTransitioning($host, $next_status) {
